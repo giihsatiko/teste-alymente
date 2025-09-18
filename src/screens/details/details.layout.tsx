@@ -1,5 +1,7 @@
+import { Error } from '@/components/error/error'
 import { LinkButton } from '@/components/link-button/link-button'
 import { ListItem } from '@/components/list-item/list-item'
+import { Loading } from '@/components/loading/loading'
 import { TypographyVariant } from '@/components/typography/types'
 import { Typography } from '@/components/typography/typography'
 import { FlatList, ListRenderItem } from 'react-native'
@@ -8,13 +10,14 @@ import * as S from './details.styles'
 import { DataItem, DetailsLayoutProps } from './types'
 
 const DetailsLayout = ({ owner, repo, getData }: DetailsLayoutProps) => {
-  const { data, isLoading, isError } = getData();
   const { bottom } = useSafeAreaInsets();
+  
+  const { data, isLoading, isError } = getData();
 
   if (isLoading)
-    return <Typography variant={TypographyVariant.BODY}>Carregando...</Typography>;
+    return <Loading />;
   if (isError || !data)
-    return <Typography variant={TypographyVariant.BODY}>Erro ao carregar</Typography>;
+    return <Error />;
 
   const dataEntries: DataItem[] = Object.entries(data)
     .filter(([_, value]) => typeof value !== 'object' || value === null)
@@ -48,7 +51,7 @@ const DetailsLayout = ({ owner, repo, getData }: DetailsLayoutProps) => {
             keyExtractor={(item) => item.key}
             renderItem={renderItem}
             showsVerticalScrollIndicator={false}
-             contentContainerStyle={{paddingBottom: 50 + bottom}}
+            contentContainerStyle={{ paddingBottom: 50 + bottom }}
           />
         </ListItem>
       </S.Container>

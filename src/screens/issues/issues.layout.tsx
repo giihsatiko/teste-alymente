@@ -1,4 +1,6 @@
+import { Error } from '@/components/error/error'
 import { ListItem } from '@/components/list-item/list-item'
+import { Loading } from '@/components/loading/loading'
 import { TypographyVariant } from '@/components/typography/types'
 import { Typography } from '@/components/typography/typography'
 import React from 'react'
@@ -13,9 +15,9 @@ const IssuesLayout = ({ owner, repo, getData }: IssuesLayoutProps) => {
   const { data, isLoading, isError, fetchNextPage, hasNextPage } = getData();
 
   if (isLoading)
-    return <Typography variant={TypographyVariant.BODY}>Carregando...</Typography>;
+    return <Loading />;
   if (isError || !data)
-    return <Typography variant={TypographyVariant.BODY}>Erro ao carregar</Typography>;
+    return <Error />;
 
   const issues = (data as unknown as { pages: any[][] }).pages.flat();
 
