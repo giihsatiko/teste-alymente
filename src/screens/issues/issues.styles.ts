@@ -18,7 +18,7 @@ export const TitleWrapper = styled.View`
 
 export const Item = styled.View`
   margin: ${({ theme }) => theme.sizes.spacing.MD}px 0;
-  gap: ${({ theme }) => theme.sizes.spacing.MD}px;
+  gap: ${({ theme }) => theme.sizes.spacing.XS}px;
 `;
 
 export const RowWrapper = styled.View`
