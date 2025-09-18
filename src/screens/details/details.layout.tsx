@@ -16,7 +16,6 @@ const DetailsLayout = ({ owner, repo, getData }: DetailsLayoutProps) => {
   const { data, isLoading, isError } = getData();
 
   if (isLoading) return <Loading />;
-  if (isError || !data) return <Error />;
 
   const dataEntries: DataItem[] = Object.entries(data)
     .filter(([_, value]) => typeof value !== 'object' || value === null)
@@ -39,22 +38,31 @@ const DetailsLayout = ({ owner, repo, getData }: DetailsLayoutProps) => {
   return (
     <S.SafeArea>
       <S.Container>
-        <ListItem>
-          <Typography variant={TypographyVariant.TITLE}>{repo}</Typography>
-          <S.RowWrapper>
-            <Typography variant={TypographyVariant.SUBTITLE}>
-              {owner}
-            </Typography>
-            <LinkButton label="Issues" url="/issues" params={{ owner, repo }} />
-          </S.RowWrapper>
-          <FlatList
-            data={dataEntries}
-            keyExtractor={(item) => item.key}
-            renderItem={({ item }) => <DetailItem item={item} />}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 50 + bottom }}
-          />
-        </ListItem>
+        {isError || !data ? (
+          <Error />
+        ) : (
+          <ListItem>
+            <Typography variant={TypographyVariant.TITLE}>{repo}</Typography>
+            <S.RowWrapper>
+              <Typography variant={TypographyVariant.SUBTITLE}>
+                {owner}
+              </Typography>
+              <LinkButton
+                label="Issues"
+                iconName="bug"
+                url="/issues"
+                params={{ owner, repo }}
+              />
+            </S.RowWrapper>
+            <FlatList
+              data={dataEntries}
+              keyExtractor={(item) => item.key}
+              renderItem={({ item }) => <DetailItem item={item} />}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{ paddingBottom: 50 + bottom }}
+            />
+          </ListItem>
+        )}
       </S.Container>
     </S.SafeArea>
   );

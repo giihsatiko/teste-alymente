@@ -9,6 +9,7 @@ export const LinkButton = ({
   label,
   url,
   params,
+  iconName,
   shouldDecode = false,
 }: LinkButtonProps): ReactElement => {
   const theme = useTheme();
@@ -21,11 +22,13 @@ export const LinkButton = ({
     <Link href={{ pathname: formattedUrl, params }} asChild>
       <S.Button>
         <S.Content>
-          <FontAwesome
-            name="bug"
-            size={24}
-            color={theme.palette.button.label}
-          />
+          {iconName && (
+            <FontAwesome
+              name={iconName}
+              size={24}
+              color={theme.palette.button.label}
+            />
+          )}
           <S.LabelContainer>
             <S.Label>{label}</S.Label>
           </S.LabelContainer>

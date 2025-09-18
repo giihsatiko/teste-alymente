@@ -15,7 +15,6 @@ const IssuesLayout = ({ owner, repo, getData }: IssuesLayoutProps) => {
   const { data, isLoading, isError, fetchNextPage, hasNextPage } = getData();
 
   if (isLoading) return <Loading />;
-  if (isError || !data) return <Error />;
 
   const issues = (data as unknown as { pages: any[][] }).pages.flat();
 
@@ -41,28 +40,32 @@ const IssuesLayout = ({ owner, repo, getData }: IssuesLayoutProps) => {
     );
   });
 
-  const renderItem = ({ item }) => <IssueItem item={item} />;
+  const renderItem = ({ item }: { item: any }) => <IssueItem item={item} />;
 
   return (
     <S.SafeArea>
       <S.Container>
-        <ListItem>
-          <S.TitleWrapper>
-            <Typography variant={TypographyVariant.TITLE}>{repo}</Typography>
-            <Typography variant={TypographyVariant.SUBTITLE}>
-              {owner}
-            </Typography>
-          </S.TitleWrapper>
-          <FlatList
-            data={issues}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={renderItem}
-            onEndReached={() => hasNextPage && fetchNextPage()}
-            onEndReachedThreshold={0.5}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 50 + bottom }}
-          />
-        </ListItem>
+        {isError || !data ? (
+          <Error />
+        ) : (
+          <ListItem>
+            <S.TitleWrapper>
+              <Typography variant={TypographyVariant.TITLE}>{repo}</Typography>
+              <Typography variant={TypographyVariant.SUBTITLE}>
+                {owner}
+              </Typography>
+            </S.TitleWrapper>
+            <FlatList
+              data={issues}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={renderItem}
+              onEndReached={() => hasNextPage && fetchNextPage()}
+              onEndReachedThreshold={0.5}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{ paddingBottom: 50 + bottom }}
+            />
+          </ListItem>
+        )}
       </S.Container>
     </S.SafeArea>
   );
