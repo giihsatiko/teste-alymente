@@ -12,8 +12,12 @@ export const Container = styled.View`
   background-color: ${({ theme }) => theme.palette.background};
 `;
 
+export const TitleWrapper = styled.View`
+  padding-bottom:  ${({ theme }) => theme.sizes.spacing.SM}px;
+`;
+
 export const Item = styled.View` 
-  padding: ${({ theme }) => theme.sizes.spacing.MD}px;
+  margin: ${({ theme }) => theme.sizes.spacing.MD}px 0;
   gap:  ${({ theme }) => theme.sizes.spacing.MD}px
 `;
 

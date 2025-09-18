@@ -1,4 +1,3 @@
-import { Link } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
@@ -17,19 +16,13 @@ export const Input = styled.TextInput.attrs(({theme}) => ({
   placeholderTextColor: theme.palette.text.secondary,
 }))`
   height: 50px;
-  background-color: ${({ theme }) => theme.palette.input};
-  border-color: ${({ theme }) => theme.palette.border};
+  background-color: ${({ theme }) => theme.palette.input.background};
+  border-color: ${({ theme }) => theme.palette.input.border};
   color: ${({ theme }) => theme.palette.text.secondary};
   border-width: 1px;
   border-radius: 8px;
   padding: 0 ${({ theme }) => theme.sizes.spacing.MD}px;
   margin-bottom: ${({ theme }) => theme.sizes.spacing.MD}px;
-`;
-
-export const Item = styled(Link)` 
-  padding: ${({ theme }) => theme.sizes.spacing.MD}px;
-  border-bottom-color: ${({ theme }) => theme.palette.border};
-  border-bottom-width: 1px;
 `;
 
 export const RowWrapper = styled.View`

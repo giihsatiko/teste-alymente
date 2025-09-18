@@ -1,12 +1,15 @@
 import { LinkButton } from '@/components/link-button/link-button'
+import { ListItem } from '@/components/list-item/list-item'
 import { TypographyVariant } from '@/components/typography/types'
 import { Typography } from '@/components/typography/typography'
-import { FlatList, ListRenderItem, View } from 'react-native'
+import { FlatList, ListRenderItem } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import * as S from './details.styles'
 import { DataItem, DetailsLayoutProps } from './types'
 
 const DetailsLayout = ({ owner, repo, getData }: DetailsLayoutProps) => {
   const { data, isLoading, isError } = getData();
+  const { bottom } = useSafeAreaInsets();
 
   if (isLoading)
     return <Typography variant={TypographyVariant.BODY}>Carregando...</Typography>;
@@ -34,22 +37,20 @@ const DetailsLayout = ({ owner, repo, getData }: DetailsLayoutProps) => {
   return (
     <S.SafeArea>
       <S.Container>
-        <View>
+        <ListItem>
+          <Typography variant={TypographyVariant.TITLE}>{repo}</Typography>
           <S.RowWrapper>
-            <View>
-              <Typography variant={TypographyVariant.TITLE}>{repo}</Typography>
-              <Typography variant={TypographyVariant.SUBTITLE}>{owner}</Typography>
-            </View>
+            <Typography variant={TypographyVariant.SUBTITLE}>{owner}</Typography>
+            <LinkButton label='Issues' url='/issues' params={{ owner, repo }} />
           </S.RowWrapper>
           <FlatList
             data={dataEntries}
             keyExtractor={(item) => item.key}
             renderItem={renderItem}
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ flexGrow: 1, paddingBottom: 32 }}
-            ListFooterComponent={<LinkButton label='◎ Issues' url='/issues' params={{ owner, repo }} />}
+             contentContainerStyle={{paddingBottom: 50 + bottom}}
           />
-        </View>
+        </ListItem>
       </S.Container>
     </S.SafeArea>
   );

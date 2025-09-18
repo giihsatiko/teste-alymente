@@ -29,7 +29,7 @@ export const useIssuesHook = ():IssuesLayoutProps => {
       if (lastPage.length < 20) return undefined;
       return pages.length + 1;
     },
-    initialPageParam: 1, // obrigatório no v5
+    initialPageParam: 1,
   });
 
   return { owner, repo, getData: () => query };

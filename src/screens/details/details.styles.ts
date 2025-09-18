@@ -9,7 +9,6 @@ export const SafeArea = styled(SafeAreaView)`
 export const Container = styled.View`
   flex: 1;
   padding: ${({ theme }) => theme.sizes.spacing.MD}px;
-  background-color: ${({ theme }) => theme.palette.background};
 `;
 
 export const Item = styled.View` 
@@ -20,5 +19,7 @@ export const Item = styled.View`
 export const RowWrapper = styled.View`
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   gap: ${({ theme }) => theme.sizes.spacing.XS}px;
+  padding-bottom:  ${({ theme }) => theme.sizes.spacing.SM}px;
 `;
