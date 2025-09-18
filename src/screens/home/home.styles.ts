@@ -12,7 +12,7 @@ export const Container = styled.View`
   background-color: ${({ theme }) => theme.palette.background};
 `;
 
-export const Input = styled.TextInput.attrs(({theme}) => ({
+export const Input = styled.TextInput.attrs(({ theme }) => ({
   placeholderTextColor: theme.palette.text.secondary,
 }))`
   height: 50px;

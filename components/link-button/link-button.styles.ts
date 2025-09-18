@@ -1,7 +1,7 @@
-import styled from "styled-components/native";
-import { Typography } from "../typography/typography";
+import styled from 'styled-components/native';
+import { Typography } from '../typography/typography';
 
-export const Button = styled.TouchableOpacity` 
+export const Button = styled.TouchableOpacity`
   padding: ${({ theme }) => theme.sizes.spacing.XS}px;
   background-color: ${({ theme }) => theme.palette.button.active};
   border-radius: 20px;

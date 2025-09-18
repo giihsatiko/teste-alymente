@@ -1,21 +1,21 @@
-import { Sizes } from "./sizes";
+import { Sizes } from './sizes';
 
 export interface ThemeType {
-    palette: {
-        background: string,
-        listItem: string,
-        input: {
-            background: string,
-            border: string,
-        },
-        text: {
-            primary: string;
-            secondary: string;
-        };
-        button: {
-            active: string;
-            disabled: string;
-        }
+  palette: {
+    background: string;
+    listItem: string;
+    input: {
+      background: string;
+      border: string;
     };
-    sizes: typeof Sizes;
+    text: {
+      primary: string;
+      secondary: string;
+    };
+    button: {
+      active: string;
+      disabled: string;
+    };
+  };
+  sizes: typeof Sizes;
 }

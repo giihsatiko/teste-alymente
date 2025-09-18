@@ -1,12 +1,8 @@
-import { useIssuesHook } from './issues.hook'
-import IssuesLayout from './issues.layout'
+import { useIssuesHook } from './issues.hook';
+import IssuesLayout from './issues.layout';
 
 export default function DetailsScreen() {
-  const controller = useIssuesHook()
+  const controller = useIssuesHook();
 
-  return (
-    <IssuesLayout
-      {...controller}
-    />
-  )
+  return <IssuesLayout {...controller} />;
 }

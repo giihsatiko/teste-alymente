@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export enum TypographyVariant {
   TITLE = 'title',
@@ -10,5 +10,4 @@ export enum TypographyVariant {
 export type TypographyProps = {
   variant: TypographyVariant;
   children: React.ReactNode;
-}
-
+};

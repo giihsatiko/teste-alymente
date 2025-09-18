@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import useHomeHook from './home.hook'
-import HomeLayout from './home.layout'
+import { useState } from 'react';
+import useHomeHook from './home.hook';
+import HomeLayout from './home.layout';
 
 export default function HomeScreen() {
-  const [query, setQuery] = useState('')
-  const [searchTerm, setSearchTerm] = useState('')
+  const [query, setQuery] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const controller = useHomeHook(searchTerm)
+  const controller = useHomeHook(searchTerm);
 
   const handleSubmit = () => {
-    setSearchTerm(query.trim())
-  }
+    setSearchTerm(query.trim());
+  };
 
   return (
     <HomeLayout
@@ -19,5 +19,5 @@ export default function HomeScreen() {
       setQuery={setQuery}
       onSubmit={handleSubmit}
     />
-  )
+  );
 }

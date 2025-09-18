@@ -3,12 +3,12 @@ import axios from 'axios';
 import { useLocalSearchParams } from 'expo-router';
 import { IssuesLayoutProps } from './types';
 
-export const useIssuesHook = ():IssuesLayoutProps => {
-   const params = useLocalSearchParams<{ owner: string; repo: string }>();
+export const useIssuesHook = (): IssuesLayoutProps => {
+  const params = useLocalSearchParams<{ owner: string; repo: string }>();
   const { owner, repo } = params;
 
   const fetchIssues = async (
-    context: QueryFunctionContext<['repoIssues', string, string], unknown>
+    context: QueryFunctionContext<['repoIssues', string, string], unknown>,
   ): Promise<any[]> => {
     const page = (context.pageParam as number | undefined) ?? 1;
 
@@ -16,13 +16,18 @@ export const useIssuesHook = ():IssuesLayoutProps => {
       `https://api.github.com/repos/${owner}/${repo}/issues`,
       {
         params: { state: 'open', page, per_page: 20 },
-      }
+      },
     );
 
     return data;
   };
 
-  const query = useInfiniteQuery<any[], Error, any[], ['repoIssues', string, string]>({
+  const query = useInfiniteQuery<
+    any[],
+    Error,
+    any[],
+    ['repoIssues', string, string]
+  >({
     queryKey: ['repoIssues', owner, repo],
     queryFn: fetchIssues,
     getNextPageParam: (lastPage, pages) => {
@@ -35,4 +40,4 @@ export const useIssuesHook = ():IssuesLayoutProps => {
   return { owner, repo, getData: () => query };
 };
 
-export default useIssuesHook
+export default useIssuesHook;

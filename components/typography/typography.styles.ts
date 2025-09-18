@@ -6,10 +6,12 @@ import { TypographyVariant } from './types';
 export const Text = styled.Text.attrs({
   numberOfLines: 1,
   ellipsizeMode: 'tail',
-  allowFontScaling: false
+  allowFontScaling: false,
 })``;
 
-export const getTypographyStyles = (theme: ThemeType): Record<TypographyVariant, TextStyle> => ({
+export const getTypographyStyles = (
+  theme: ThemeType,
+): Record<TypographyVariant, TextStyle> => ({
   title: {
     fontSize: theme.sizes.typography.LG,
     fontWeight: 'bold',

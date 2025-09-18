@@ -4,15 +4,11 @@ import { TypographyProps, TypographyVariant } from './types';
 import { Text, getTypographyStyles } from './typography.styles';
 
 export const Typography = ({
-    variant = TypographyVariant.BODY,
-    children,
+  variant = TypographyVariant.BODY,
+  children,
 }: TypographyProps) => {
-    const theme = useTheme()
-    const styles = getTypographyStyles(theme);
+  const theme = useTheme();
+  const styles = getTypographyStyles(theme);
 
-    return (
-        <Text style={[styles[variant]]}>
-            {children}
-        </Text>
-    );
+  return <Text style={[styles[variant]]}>{children}</Text>;
 };

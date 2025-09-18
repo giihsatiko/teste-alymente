@@ -1,22 +1,22 @@
-import { Sizes } from "./sizes";
-import { ThemeType } from "./types";
+import { Sizes } from './sizes';
+import { ThemeType } from './types';
 
-export const darkTheme:ThemeType = {
+export const darkTheme: ThemeType = {
   palette: {
     background: '#010409',
     listItem: '#151b23',
-    input:{
+    input: {
       background: '#ffffff',
-      border: '#aaaaaa'
+      border: '#aaaaaa',
     },
     text: {
       primary: '#ffffff',
       secondary: '#9198a1',
     },
-     button: {
+    button: {
       active: '#238636',
-      disabled: '#9CA3AF'
-    }
+      disabled: '#9CA3AF',
+    },
   },
   sizes: Sizes,
-}
+};

@@ -1,7 +1,9 @@
 {
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.organizeImports": "explicit",
-    "source.sortMembers": "explicit"
+    "source.fixAll": "always", // runs all code actions (ESLint, Prettier, etc.)
+    "source.organizeImports": "always", // optional
+    "source.sortMembers": "always", // optional
+    "source.fixAll.eslint": "always" // run ESLint fixes on save
   }
 }

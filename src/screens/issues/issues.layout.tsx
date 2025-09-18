@@ -1,23 +1,21 @@
-import { Error } from '@/components/error/error'
-import { ListItem } from '@/components/list-item/list-item'
-import { Loading } from '@/components/loading/loading'
-import { TypographyVariant } from '@/components/typography/types'
-import { Typography } from '@/components/typography/typography'
-import React from 'react'
-import { FlatList } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import * as S from './issues.styles'
-import { IssuesLayoutProps } from './types'
+import { Error } from '@/components/error/error';
+import { ListItem } from '@/components/list-item/list-item';
+import { Loading } from '@/components/loading/loading';
+import { TypographyVariant } from '@/components/typography/types';
+import { Typography } from '@/components/typography/typography';
+import React from 'react';
+import { FlatList } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import * as S from './issues.styles';
+import { IssuesLayoutProps } from './types';
 
 const IssuesLayout = ({ owner, repo, getData }: IssuesLayoutProps) => {
   const { bottom } = useSafeAreaInsets();
 
   const { data, isLoading, isError, fetchNextPage, hasNextPage } = getData();
 
-  if (isLoading)
-    return <Loading />;
-  if (isError || !data)
-    return <Error />;
+  if (isLoading) return <Loading />;
+  if (isError || !data) return <Error />;
 
   const issues = (data as unknown as { pages: any[][] }).pages.flat();
 
@@ -32,7 +30,8 @@ const IssuesLayout = ({ owner, repo, getData }: IssuesLayoutProps) => {
     return (
       <S.Item>
         <Typography variant={TypographyVariant.SUBTITLE}>
-          #{item.number} In {repoName} · {item.user.login} opened on {createdDate}
+          #{item.number} In {repoName} · {item.user.login} opened on{' '}
+          {createdDate}
         </Typography>
         <Typography variant={TypographyVariant.TITLE}>{item.title}</Typography>
         <Typography variant={TypographyVariant.CAPTION}>
@@ -50,8 +49,9 @@ const IssuesLayout = ({ owner, repo, getData }: IssuesLayoutProps) => {
         <ListItem>
           <S.TitleWrapper>
             <Typography variant={TypographyVariant.TITLE}>{repo}</Typography>
-            <Typography variant={TypographyVariant.SUBTITLE}>{owner}</Typography>
-
+            <Typography variant={TypographyVariant.SUBTITLE}>
+              {owner}
+            </Typography>
           </S.TitleWrapper>
           <FlatList
             data={issues}
@@ -68,4 +68,4 @@ const IssuesLayout = ({ owner, repo, getData }: IssuesLayoutProps) => {
   );
 };
 
-export default IssuesLayout
+export default IssuesLayout;

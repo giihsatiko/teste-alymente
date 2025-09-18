@@ -4,7 +4,7 @@ export type IssuesLayoutProps = {
   owner: string;
   repo: string;
   getData: () => UseInfiniteQueryResult<any[], Error>;
-}
+};
 
 export type DataItem = {
   key: string;

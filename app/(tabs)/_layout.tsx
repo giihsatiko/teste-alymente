@@ -21,12 +21,22 @@ export default function TabLayout() {
           borderTopColor: 'transparent',
         },
         tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen name="index" options={{
-        headerShown: false, tabBarIcon: () => (
-          <FontAwesome name="home" size={theme.sizes.typography.XL} color={theme.palette.text.primary} />
-        ), title: 'Home'
-      }} />
+      }}
+    >
+      <Tabs.Screen
+        name="index"
+        options={{
+          headerShown: false,
+          tabBarIcon: () => (
+            <FontAwesome
+              name="home"
+              size={theme.sizes.typography.XL}
+              color={theme.palette.text.primary}
+            />
+          ),
+          title: 'Home',
+        }}
+      />
     </Tabs>
   );
 }

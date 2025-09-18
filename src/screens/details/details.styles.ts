@@ -11,7 +11,7 @@ export const Container = styled.View`
   padding: ${({ theme }) => theme.sizes.spacing.MD}px;
 `;
 
-export const Item = styled.View` 
+export const Item = styled.View`
   padding: ${({ theme }) => theme.sizes.spacing.MD}px 0;
   gap: ${({ theme }) => theme.sizes.spacing.SM}px;
 `;
@@ -21,5 +21,5 @@ export const RowWrapper = styled.View`
   align-items: center;
   justify-content: space-between;
   gap: ${({ theme }) => theme.sizes.spacing.XS}px;
-  padding-bottom:  ${({ theme }) => theme.sizes.spacing.SM}px;
+  padding-bottom: ${({ theme }) => theme.sizes.spacing.SM}px;
 `;

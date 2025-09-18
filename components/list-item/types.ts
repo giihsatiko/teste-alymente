@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
 export type ListItemProps = {
-    children: React.ReactNode;
-    onPress?: () => void;
-}
+  children: React.ReactNode;
+  onPress?: () => void;
+};
