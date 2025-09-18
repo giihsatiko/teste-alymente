@@ -9,7 +9,6 @@ export const Text = styled.Text.attrs({
   allowFontScaling: false
 })`
    flex-shrink: 1;
-    width: 100%
 `;
 
 export const getTypographyStyles = (theme: ThemeType): Record<TypographyVariant, TextStyle> => ({

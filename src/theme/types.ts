@@ -9,6 +9,10 @@ export interface ThemeType {
             primary: string;
             secondary: string;
         };
+        button: {
+            active: string;
+            disabled: string;
+        }
     };
     sizes: typeof Sizes;
 }

@@ -13,8 +13,8 @@ export const Container = styled.View`
 `;
 
 export const Item = styled.View` 
-  padding: ${({ theme }) => theme.sizes.spacing.MD}px 0;
-  gap: ${({ theme }) => theme.sizes.spacing.SM}px;
+  padding: ${({ theme }) => theme.sizes.spacing.MD}px;
+  gap:  ${({ theme }) => theme.sizes.spacing.MD}px
 `;
 
 export const RowWrapper = styled.View`

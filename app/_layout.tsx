@@ -22,6 +22,12 @@ export default function RootLayout() {
                 title: 'Detalhes',
               }}
             />
+            <Stack.Screen
+              name="issues"
+              options={{
+                title: 'Issues',
+              }}
+            />
           </Stack>
         </ThemeProvider>
       </QueryClientProvider>
