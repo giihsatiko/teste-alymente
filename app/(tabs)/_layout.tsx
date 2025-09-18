@@ -34,6 +34,20 @@ export default function TabLayout() {
           headerShown: false,
         }}
       />
+      <Tabs.Screen
+        name="design-system"
+        options={{
+          tabBarIcon: () => (
+            <FontAwesome
+              name="book"
+              size={theme.sizes.typography.XL}
+              color={theme.palette.text.primary}
+            />
+          ),
+          title: 'Design System',
+          headerShown: false,
+        }}
+      />
     </Tabs>
   );
 }
