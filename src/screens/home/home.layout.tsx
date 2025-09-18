@@ -15,7 +15,7 @@ const HomeLayout = (props: HomeLayoutProps) => {
             onChangeText={props.setQuery}
             onSubmitEditing={props.onSubmit}
           />
-          {props.isError ? <Error /> : <Content {...props} />}
+          {props.isError ? <Error message={(props.error as Error)?.message ?? 'Erro desconhecido'}/> : <Content {...props} />}
         </S.Container>
       </S.SafeArea>
     </TouchableWithoutFeedback>

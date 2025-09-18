@@ -3,8 +3,9 @@ import { useTheme } from 'styled-components/native';
 import { TypographyVariant } from '../typography/types';
 import { Typography } from '../typography/typography';
 import * as S from './error.styles';
+import { ErrorType } from './types';
 
-export const Error = () => {
+export const Error = ({message}: ErrorType) => {
   const theme = useTheme();
 
   return (
@@ -16,6 +17,9 @@ export const Error = () => {
       />
       <Typography variant={TypographyVariant.TITLE}>
         Erro na requisição
+      </Typography>
+       <Typography variant={TypographyVariant.TITLE}>
+        {message}
       </Typography>
       <Typography variant={TypographyVariant.BODY}>
         Por favor, tente novamente mais tarde.

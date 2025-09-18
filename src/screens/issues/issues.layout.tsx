@@ -12,7 +12,7 @@ import { IssuesLayoutProps } from './types';
 const IssuesLayout = ({ owner, repo, getData }: IssuesLayoutProps) => {
   const { bottom } = useSafeAreaInsets();
 
-  const { data, isLoading, isError, fetchNextPage, hasNextPage } = getData();
+  const { data, isLoading, isError, fetchNextPage, hasNextPage, error } = getData();
 
   if (isLoading) return <Loading />;
 
@@ -46,7 +46,7 @@ const IssuesLayout = ({ owner, repo, getData }: IssuesLayoutProps) => {
     <S.SafeArea>
       <S.Container>
         {isError || !data ? (
-          <Error />
+          <Error message={(error as Error)?.message ?? 'Erro desconhecido'}/>
         ) : (
           <ListItem>
             <S.TitleWrapper>

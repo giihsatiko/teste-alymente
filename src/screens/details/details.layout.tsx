@@ -4,6 +4,7 @@ import { ListItem } from '@/components/list-item/list-item';
 import { Loading } from '@/components/loading/loading';
 import { TypographyVariant } from '@/components/typography/types';
 import { Typography } from '@/components/typography/typography';
+import { handleEmptyText } from '@/src/utils/handle-empty-text';
 import React from 'react';
 import { FlatList } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -13,7 +14,7 @@ import { DataItem, DetailsLayoutProps } from './types';
 const DetailsLayout = ({ owner, repo, getData }: DetailsLayoutProps) => {
   const { bottom } = useSafeAreaInsets();
 
-  const { data, isLoading, isError } = getData();
+  const { data, isLoading, isError, error } = getData();
 
   if (isLoading) return <Loading />;
 
@@ -30,7 +31,7 @@ const DetailsLayout = ({ owner, repo, getData }: DetailsLayoutProps) => {
         {item.key.replace(/_/g, ' ')}:
       </Typography>
       <Typography variant={TypographyVariant.CAPTION}>
-        {item.value === '' ? '???' : item.value}
+        {handleEmptyText(item.value)}
       </Typography>
     </S.Item>
   ));
@@ -39,7 +40,7 @@ const DetailsLayout = ({ owner, repo, getData }: DetailsLayoutProps) => {
     <S.SafeArea>
       <S.Container>
         {isError || !data ? (
-          <Error />
+           <Error message={(error as Error)?.message ?? 'Erro desconhecido'}/>
         ) : (
           <ListItem>
             <Typography variant={TypographyVariant.TITLE}>{repo}</Typography>
