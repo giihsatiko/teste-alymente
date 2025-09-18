@@ -8,3 +8,8 @@ export type HomeLayoutProps = UseInfiniteQueryResult<
   setQuery: (text: string) => void;
   onSubmit: () => void;
 };
+
+export type RowValueType = {
+  icon: string,
+  value: string
+}

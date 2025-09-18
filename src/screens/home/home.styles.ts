@@ -30,7 +30,3 @@ export const RowWrapper = styled.View`
   align-items: center;
   gap: ${({ theme }) => theme.sizes.spacing.SM}px;
 `;
-
-export const Avatar = styled.Image`
-  border-radius: 500px;
-`;

@@ -1,3 +1,4 @@
+import { Avatar } from '@/components/avatar/avatar';
 import { ListItem } from '@/components/list-item/list-item';
 import { TypographyVariant } from '@/components/typography/types';
 import { Typography } from '@/components/typography/typography';
@@ -6,6 +7,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 import { ActivityIndicator, FlatList, View } from 'react-native';
 import { useTheme } from 'styled-components/native';
+import { getRowValues } from '../constants/get-row-values';
 import * as S from '../home.styles';
 import { HomeLayoutProps } from '../types';
 
@@ -16,6 +18,7 @@ export const Content = ({
   hasNextPage,
   fetchNextPage,
   refetch,
+  isLoading,
 }: HomeLayoutProps) => {
   const theme = useTheme();
 
@@ -38,11 +41,7 @@ export const Content = ({
             >
               <ListItem>
                 <S.RowWrapper>
-                  <S.Avatar
-                    src={item.owner.avatar_url}
-                    width={40}
-                    height={40}
-                  />
+                  <Avatar isLoading={isLoading} src={item.owner.avatar_url} />
                   <View style={{ flex: 1 }}>
                     <Typography variant={TypographyVariant.TITLE}>
                       {item.name}
@@ -52,22 +51,19 @@ export const Content = ({
                     </Typography>
                   </View>
                 </S.RowWrapper>
-                <Typography variant={TypographyVariant.BODY}>
-                  <FontAwesome
-                    name="star"
-                    size={theme.sizes.typography.SM}
-                    color={theme.palette.text.primary}
-                  />
-                  {item.stargazers_count}
-                </Typography>
-                <Typography variant={TypographyVariant.BODY}>
-                  <FontAwesome
-                    name="code"
-                    size={theme.sizes.typography.SM}
-                    color={theme.palette.text.primary}
-                  />
-                  {handleEmptyText(item.language)}
-                </Typography>
+                <S.RowWrapper>
+                  {getRowValues(item).map((stat, index) => (
+                    <Typography key={index} variant={TypographyVariant.BODY}>
+                      <FontAwesome
+                        name={stat.icon as any}
+                        size={theme.sizes.typography.SM}
+                        color={theme.palette.text.primary}
+                      />
+                      {' '}
+                      {stat.value}
+                    </Typography>
+                  ))}
+                </S.RowWrapper>
                 <Typography variant={TypographyVariant.CAPTION}>
                   {handleEmptyText(item.description)}
                 </Typography>
