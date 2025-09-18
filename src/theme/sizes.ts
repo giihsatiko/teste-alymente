@@ -6,6 +6,13 @@ export const Sizes = {
     LG: 24,
     XL: 32,
   },
+  avatar: {
+    XS: 30,
+    SM: 40,
+    MD: 50,
+    LG: 60,
+    XL: 70,
+  },
   typography: {
     XS: 12,
     SM: 16,
