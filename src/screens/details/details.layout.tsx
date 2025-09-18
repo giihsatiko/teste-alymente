@@ -4,7 +4,8 @@ import { ListItem } from '@/components/list-item/list-item';
 import { Loading } from '@/components/loading/loading';
 import { TypographyVariant } from '@/components/typography/types';
 import { Typography } from '@/components/typography/typography';
-import { FlatList, ListRenderItem } from 'react-native';
+import React from 'react';
+import { FlatList } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as S from './details.styles';
 import { DataItem, DetailsLayoutProps } from './types';
@@ -24,7 +25,7 @@ const DetailsLayout = ({ owner, repo, getData }: DetailsLayoutProps) => {
       value: typeof value === 'boolean' ? String(value) : String(value),
     }));
 
-  const renderItem: ListRenderItem<DataItem> = ({ item }) => (
+  const DetailItem = React.memo(({ item }: { item: DataItem }) => (
     <S.Item>
       <Typography variant={TypographyVariant.BODY}>
         {item.key.replace(/_/g, ' ')}:
@@ -33,7 +34,7 @@ const DetailsLayout = ({ owner, repo, getData }: DetailsLayoutProps) => {
         {item.value === '' ? '???' : item.value}
       </Typography>
     </S.Item>
-  );
+  ));
 
   return (
     <S.SafeArea>
@@ -49,7 +50,7 @@ const DetailsLayout = ({ owner, repo, getData }: DetailsLayoutProps) => {
           <FlatList
             data={dataEntries}
             keyExtractor={(item) => item.key}
-            renderItem={renderItem}
+            renderItem={({ item }) => <DetailItem item={item} />}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: 50 + bottom }}
           />
