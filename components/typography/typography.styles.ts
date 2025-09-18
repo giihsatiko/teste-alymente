@@ -7,9 +7,7 @@ export const Text = styled.Text.attrs({
   numberOfLines: 1,
   ellipsizeMode: 'tail',
   allowFontScaling: false
-})`
-   flex-shrink: 1;
-`;
+})``;
 
 export const getTypographyStyles = (theme: ThemeType): Record<TypographyVariant, TextStyle> => ({
   title: {
