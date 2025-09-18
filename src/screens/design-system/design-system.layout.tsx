@@ -1,3 +1,4 @@
+import { Avatar } from '@/components/avatar/avatar';
 import { Error } from '@/components/error/error';
 import { LinkButton } from '@/components/link-button/link-button';
 import { ListItem } from '@/components/list-item/list-item';
@@ -8,39 +9,11 @@ import { Sizes } from '@/src/theme/sizes';
 import { useTheme } from 'styled-components/native';
 import { LinkButtonProps } from './constants/link-button-props';
 import * as S from './design-system.styles';
-import { ThemeValue } from './types';
+import { renderThemeObject } from './utils/render-theme-object';
 
 export const DesignSystemLayout = () => {
   const theme = useTheme();
   const variants = Object.values(TypographyVariant);
-
-  const renderThemeObject = (
-    obj: Record<string, ThemeValue>,
-  ): React.ReactNode => {
-    return Object.entries(obj).map(([key, value]) => {
-      if (typeof value === 'string') {
-        return (
-          <S.ContentWrapper key={key}>
-            <Typography variant={TypographyVariant.BODY}>
-              ${key}: string
-            </Typography>
-          </S.ContentWrapper>
-        );
-      }
-
-      const subTokensWithType = Object.keys(value)
-        .map((subKey) => `${subKey}: string`)
-        .join(', ');
-
-      return (
-        <S.ContentWrapper key={key}>
-          <Typography key={key} variant={TypographyVariant.BODY}>
-            ${`${key}: { ${subTokensWithType} }`}
-          </Typography>
-        </S.ContentWrapper>
-      );
-    });
-  };
 
   return (
     <S.SafeArea>
@@ -52,6 +25,22 @@ export const DesignSystemLayout = () => {
               Tokens de espaçamento
             </Typography>
             {Object.entries(Sizes.spacing).map(([key, value]) => (
+              <Typography key={key} variant={TypographyVariant.BODY}>
+                ${key}: {value}px
+              </Typography>
+            ))}
+            <Typography variant={TypographyVariant.SUBTITLE}>
+              Tokens de Typography
+            </Typography>
+            {Object.entries(Sizes.typography).map(([key, value]) => (
+              <Typography key={key} variant={TypographyVariant.BODY}>
+                ${key}: {value}px
+              </Typography>
+            ))}
+            <Typography variant={TypographyVariant.SUBTITLE}>
+              Tokens de Avatar
+            </Typography>
+            {Object.entries(Sizes.avatar).map(([key, value]) => (
               <Typography key={key} variant={TypographyVariant.BODY}>
                 ${key}: {value}px
               </Typography>
@@ -99,7 +88,35 @@ export const DesignSystemLayout = () => {
         <ListItem>
           <S.ContentWrapper>
             <Typography variant={TypographyVariant.TITLE}>Erro</Typography>
-            <Error />
+            <Error message="Lorem Ipsum" />
+            <Typography variant={TypographyVariant.SUBTITLE}>Props</Typography>
+            <Typography variant={TypographyVariant.BODY}>
+              $message : string
+            </Typography>
+          </S.ContentWrapper>
+        </ListItem>
+        <ListItem>
+          <S.ContentWrapper>
+            <Typography variant={TypographyVariant.TITLE}>Avatar</Typography>
+            <Typography variant={TypographyVariant.SUBTITLE}>Normal</Typography>
+            <Avatar
+              isLoading={false}
+              src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            />
+            <Typography variant={TypographyVariant.SUBTITLE}>
+              Loading
+            </Typography>
+            <Avatar
+              isLoading={true}
+              src=""
+            />
+            <Typography variant={TypographyVariant.SUBTITLE}>Props</Typography>
+            <Typography variant={TypographyVariant.BODY}>
+              $isLoading: boolean
+            </Typography>
+            <Typography variant={TypographyVariant.BODY}>
+              $src: string
+            </Typography>
           </S.ContentWrapper>
         </ListItem>
         <ListItem>
