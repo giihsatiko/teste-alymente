@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import { Typography } from '../typography/typography';
 
 export const Button = styled.TouchableOpacity`
   padding: ${({ theme }) => theme.sizes.spacing.XS}px;
@@ -19,6 +18,8 @@ export const LabelContainer = styled.View`
   justify-content: center;
 `;
 
-export const Label = styled(Typography)`
+export const Label = styled.Text`
   text-align: center;
+  color: ${({ theme }) => theme.palette.button.label};
+  font-weight: 600;
 `;

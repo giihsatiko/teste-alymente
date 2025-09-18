@@ -2,20 +2,17 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 
 import { HapticTab } from '@/components/haptic-tab';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-import { darkTheme } from '@/src/theme/dark';
-import { lightTheme } from '@/src/theme/light';
 import { FontAwesome } from '@expo/vector-icons';
+import { useTheme } from 'styled-components/native';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-  const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
+  const theme = useTheme();
 
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: theme.palette.text.primary,
-        tabBarInactiveTintColor: theme.palette.text.secondary,
+        tabBarInactiveTintColor: theme.palette.text.primary,
         tabBarStyle: {
           backgroundColor: theme.palette.background,
           borderTopColor: 'transparent',
@@ -26,7 +23,6 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          headerShown: false,
           tabBarIcon: () => (
             <FontAwesome
               name="home"
@@ -35,6 +31,7 @@ export default function TabLayout() {
             />
           ),
           title: 'Home',
+          headerShown: false,
         }}
       />
     </Tabs>

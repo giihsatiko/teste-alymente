@@ -15,7 +15,7 @@ export const darkTheme: ThemeType = {
     },
     button: {
       active: '#238636',
-      disabled: '#9CA3AF',
+      label: '#ffffff',
     },
   },
   sizes: Sizes,

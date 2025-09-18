@@ -1,33 +1,43 @@
 import { QueryClientProvider } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { darkTheme } from '@/src/theme/dark';
+import { lightTheme } from '@/src/theme/light';
 import { QueryClient } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
+import { Button } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
 
 const queryClient = new QueryClient();
 
 export default function RootLayout() {
+  const [isDark, setIsDark] = useState(true);
+  const theme = isDark ? darkTheme : lightTheme;
+
+  const toggleTheme = () => setIsDark((prev) => !prev);
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={darkTheme}>
+        <ThemeProvider theme={theme}>
           <Stack
             screenOptions={{
-              contentStyle: { backgroundColor: darkTheme.palette.background },
+              contentStyle: { backgroundColor: theme.palette.background },
               headerStyle: {
-                backgroundColor: darkTheme.palette.background,
+                backgroundColor: theme.palette.background,
               },
               headerShadowVisible: false,
-              headerTintColor: darkTheme.palette.text.primary,
+              headerTintColor: theme.palette.text.primary,
+              headerRight: () => (
+                <Button
+                  title={isDark ? 'Light' : 'Dark'}
+                  onPress={toggleTheme}
+                  color={theme.palette.text.primary}
+                />
+              ),
             }}
           >
-            <Stack.Screen
-              name="(tabs)"
-              options={{ title: 'Home', headerShown: false }}
-            />
+            <Stack.Screen name="(tabs)" options={{ title: 'Home' }} />
             <Stack.Screen
               name="[id]"
               options={{

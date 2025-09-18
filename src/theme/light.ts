@@ -4,18 +4,18 @@ import { ThemeType } from './types';
 export const lightTheme: ThemeType = {
   palette: {
     background: '#ffffff',
-    listItem: '#555555',
+    listItem: '#f6f8fa',
     input: {
       background: '#ffffff',
       border: '#aaaaaa',
     },
     text: {
       primary: '#000000',
-      secondary: '#555555',
+      secondary: '#91989f',
     },
     button: {
       active: '#238636',
-      disabled: '#9CA3AF',
+      label: '#ffffff',
     },
   },
   sizes: Sizes,

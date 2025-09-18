@@ -2,7 +2,6 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 import { ReactElement } from 'react';
 import { useTheme } from 'styled-components/native';
-import { TypographyVariant } from '../typography/types';
 import * as S from './link-button.styles';
 import { LinkButtonProps } from './types';
 
@@ -25,10 +24,10 @@ export const LinkButton = ({
           <FontAwesome
             name="bug"
             size={24}
-            color={theme.palette.text.primary}
+            color={theme.palette.button.label}
           />
           <S.LabelContainer>
-            <S.Label variant={TypographyVariant.SUBTITLE}>{label}</S.Label>
+            <S.Label>{label}</S.Label>
           </S.LabelContainer>
         </S.Content>
       </S.Button>

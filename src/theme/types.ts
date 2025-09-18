@@ -14,7 +14,7 @@ export interface ThemeType {
     };
     button: {
       active: string;
-      disabled: string;
+      label: string;
     };
   };
   sizes: typeof Sizes;
