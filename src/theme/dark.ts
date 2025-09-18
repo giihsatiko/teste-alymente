@@ -3,12 +3,15 @@ import { ThemeType } from "./types";
 
 export const darkTheme:ThemeType = {
   palette: {
-    background: '#121212',
-    border: '#aaaaaa',
-    input: '#ffffff',
+    background: '#010409',
+    listItem: '#151b23',
+    input:{
+      background: '#ffffff',
+      border: '#aaaaaa'
+    },
     text: {
       primary: '#ffffff',
-      secondary: '#aaaaaa',
+      secondary: '#9198a1',
     },
      button: {
       active: '#238636',

@@ -14,7 +14,14 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={darkTheme}>
-          <Stack>
+          <Stack screenOptions={{
+            contentStyle: { backgroundColor: darkTheme.palette.background,},
+            headerStyle: {
+              backgroundColor: darkTheme.palette.background,       
+            },
+            headerShadowVisible: false,
+            headerTintColor: darkTheme.palette.text.primary,
+          }}>
             <Stack.Screen name="(tabs)" options={{ title: 'Home', headerShown: false }} />
             <Stack.Screen
               name="[id]"

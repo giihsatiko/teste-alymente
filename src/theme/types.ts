@@ -3,8 +3,11 @@ import { Sizes } from "./sizes";
 export interface ThemeType {
     palette: {
         background: string,
-        border: string,
-        input: string,
+        listItem: string,
+        input: {
+            background: string,
+            border: string,
+        },
         text: {
             primary: string;
             secondary: string;
